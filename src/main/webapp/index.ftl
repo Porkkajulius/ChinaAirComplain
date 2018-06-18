@@ -158,7 +158,7 @@
   
      <div class="form-group">
     <label for="exampleInputEmail1"></label>    
-              <canvas id="can" width="600" height="100" style="border:2px solid;"></canvas>
+              <canvas id="can" width="400 height="100" style="border:2px solid;"></canvas>
        <input class="form-control" name="signature" type="button" value="clear" id="clr" size="23" onclick="erase()">
     
   </div>

@@ -28,10 +28,15 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.ChinaForm.application.util.SendMail;
+
 
 @Controller
 @RequestMapping(value = "/")
 public class FormController {
+
+	@Autowired
+	private SendMail sposti;
 	
 
 	 String applicantInformation=null;
@@ -60,6 +65,12 @@ public class FormController {
 			document.close();
 			
 			System.out.println("Nimi lomakkeelta: "+name);	
+			
+			  String to = name;
+		      String subject = (id);
+		      String body = (aircraftName);	      
+			      sposti.sendMail(to, subject, body);
+
 		  
 			return "redirect:/";
 		}

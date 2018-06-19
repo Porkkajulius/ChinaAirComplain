@@ -1,5 +1,6 @@
 package com.ChinaForm.application.controller;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -7,6 +8,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
+
+import javax.imageio.ImageIO;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import sun.misc.BASE64Decoder;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -27,6 +37,8 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.ChinaForm.application.util.SendMail;
 
@@ -51,26 +63,40 @@ public class FormController {
 
 
 		@RequestMapping(value = "/", method = RequestMethod.POST)
-		public String getHetu(@RequestParam("name") String name,@RequestParam("id") String id,@RequestParam("aircraftName") String aircraftName) throws DocumentException, IOException {
+		public String getHetu(@RequestParam("name") String name,@RequestParam("id") String id,@RequestParam("aircraftName") String aircraftName, String signature) throws DocumentException, IOException {
 
-			
 			Document document = new Document();
-			PdfWriter.getInstance(document, new FileOutputStream("iTextHelloWorld.pdf"));
-			 
+			PdfWriter.getInstance(document, new FileOutputStream("testi.pdf"));
+			
 			document.open();
 			Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
 			Chunk chunk = new Chunk(name+id+aircraftName,font);
-			 
-			document.add(chunk);
+			
+			Paragraph pEmail = new Paragraph(name);
+			Paragraph pId = new Paragraph(id);
+			Paragraph pAircraftName = new Paragraph(aircraftName);
+			
+			String data = signature;			
+			String base64Image = data.split(",")[1];
+			byte[] imageBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64Image);
+
+			Image image = Image.getInstance(imageBytes);
+			
+			document.add(pEmail);
+			document.add(pId);
+			document.add(pAircraftName);
+			document.add(image);
 			document.close();
 			
 			System.out.println("Nimi lomakkeelta: "+name);	
-			
+			System.out.println("signature: "+signature.toString());
 			  String to = name;
 		      String subject = (id);
 		      String body = (aircraftName);	      
-			      sposti.sendMail(to, subject, body);
-
+		      File f = new File("testi.pdf");
+			      sposti.sendMail(to, subject, body, f);
+			      
+			  
 		  
 			return "redirect:/";
 		}

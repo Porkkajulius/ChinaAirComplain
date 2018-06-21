@@ -56,10 +56,11 @@ public class FormController {
 	 String name="";
 	 String id="";
 	 String aircraftName="";
+	 String passport="";
 	
 
 		@RequestMapping(value = "/", method = RequestMethod.GET)
-		public String sentHetu(Model model) throws IOException {
+		public String sentUserInformation(Model model) throws IOException {
 			
 			model.addAttribute("applicantInformation", applicantInformation);
 			return "index";
@@ -67,12 +68,15 @@ public class FormController {
 
 
 		@RequestMapping(value = "/", method = RequestMethod.POST)
-		public String getHetu(@RequestParam("name") String name,@RequestParam("id") String id,@RequestParam("aircraftName") String aircraftName, String signature) throws DocumentException, IOException {
+		public String getUserInformation(@RequestParam("name") String name,@RequestParam("id") String id,@RequestParam("aircraftName") String aircraftName,@RequestParam("passportImageBase64") String passport) throws DocumentException, IOException {
 
 			this.name=name;
 			this.id=id;
 			this.aircraftName=aircraftName;
-
+			this.passport=passport;
+			
+			System.out.println(name);
+			System.out.println(passport);
 			return "redirect:/sign";
 		}
 		
@@ -98,16 +102,22 @@ public class FormController {
 			Paragraph pId = new Paragraph(id);
 			Paragraph pAircraftName = new Paragraph(aircraftName);
 			
-			String data = signature;			
-			String base64Image = data.split(",")[1];
-			byte[] imageBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64Image);
+			String signatureData = signature;			
+			String base64ImageSignature = signatureData.split(",")[1];
+			byte[] imageBytesSignature = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64ImageSignature);
+			
+			String passportData = passport;			
+			String base64ImagePassport = passportData.split(",")[1];
+			byte[] imageBytesPassport = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64ImagePassport);
 
-			Image image = Image.getInstance(imageBytes);
+			Image imageSignature = Image.getInstance(imageBytesSignature);
+			Image imagePassport = Image.getInstance(imageBytesPassport);
 			
 			document.add(pEmail);
 			document.add(pId);
 			document.add(pAircraftName);
-			document.add(image);
+			document.add(imageSignature);
+			document.add(imagePassport);
 			document.close();
 			
 			System.out.println("Nimi lomakkeelta: "+name);	

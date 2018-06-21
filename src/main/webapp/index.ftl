@@ -47,31 +47,39 @@
     <label for="exampleInputEmail1">Aircraft company name</label>
     <input class="form-control" name="aircraftName" placeholder="XXX aircraft">
   </div>
-  
+
   <div class="form-group">
     <label for="exampleInputEmail1">Passport picture</label>
-    <input type="file" name="passport" accept="image/*">
+    <input type="file" name="passportImage" id="passportImage" accept="image/*"/>
+    <input type="hidden" id="passportImageBase64" name="passportImageBase64">
   </div>
 
-			<button onclick="getSignatureBase64()" input type="submit" class="btn btn-success btn-block">Ready for signing</button>
+			<button input type="submit" class="btn btn-success btn-block">Ready for signing</button>
 			</form>
   </div>
 
   </div>
-  
 
 
 	<script type="text/javascript">
-	function getSignatureBase64() {
-			document.getElementById("signature").value = $.fn.bcPaint.export();
-	}
+  $('#passportImage').on('change', function(e) {
+  var file = e.target.files[0];
+
+  var fileReader = new FileReader();
+
+  fileReader.onload = function (e) {
+  	var base64 = e.target.result;
+    //document.getElementById("passportImageBase64").value = base64;
+    //console.log(base64.toString());
+    //document.getElementById("passportImageBase64").value ="moi";
+    document.getElementById("passportImageBase64").value = base64.toString();
+    console.log(document.getElementById("passportImageBase64").value.toString());
+//    debugger;
+  };
+
+  fileReader.readAsDataURL(file);
+});
 	</script>
-
-
-		<script type="text/javascript">
-			$('#bcPaint').bcPaint();
-		</script>
-
 
 </div>
 

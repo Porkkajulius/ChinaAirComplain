@@ -13,19 +13,9 @@
   }
 
   #bcPaint-canvas-container > canvas{
-    border: 0;
+    border: 2;
   }
 
-  #bcPaint-bottom{
-    height: 61px;
-    padding: 45px 0;
-    background-color: #f7f7f7;
-  }
-
-  #bcPaint-bottom > button{
-    font-size: 18px;
-    padding: 20px 50px;
-    margin: 0 50px;
-  }
+ 
 
 }

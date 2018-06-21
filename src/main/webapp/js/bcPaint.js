@@ -28,8 +28,7 @@ $(document).ready(function(){
 							palette 		: $('<div id="bcPaint-palette"></div>'),
 							color 			: $('<div class="bcPaint-palette-color"></div>'),
 							canvasContainer : $('<div id="bcPaint-canvas-container"></div>'),
-							canvasPane 		: $('<canvas id="bcPaintCanvas"></canvas>'),
-							bottom 			: $('<div id="bcPaint-bottom"></div>')
+							canvasPane 		: $('<canvas id="bcPaintCanvas"></canvas>')
 						//	buttonReset 	: $('<button id="bcPaint-reset">Reset</button>'),
 						//	buttonSave		: $('<button id="bcPaint-export">Export</button>')
 						},
@@ -50,7 +49,6 @@ $(document).ready(function(){
 				palette 		= templates.palette.clone(),
 				canvasContainer = templates.canvasContainer.clone(),
 				canvasPane 		= templates.canvasPane.clone(),
-				bottom 			= templates.bottom.clone(),
 			//	buttonReset 	= templates.buttonReset.clone(),
 			//	buttonSave 		= templates.buttonSave.clone(),
 				color;
@@ -59,7 +57,6 @@ $(document).ready(function(){
 			rootElement.append(container);
 			//container.append(header);
 			container.append(canvasContainer);
-			container.append(bottom);
 		//	header.append(palette);
 			canvasContainer.append(canvasPane);
 		//	bottom.append(buttonReset);

@@ -19,130 +19,8 @@
      <!--  <link rel="stylesheet" href="../css/global.css"  type="text/css" > -->
     <title>Complaining form</title>
 
-      	<style type="text/css">
-			*{
-			  margin: 0;
-			  padding: 0;
-			  list-style: none;
-			}
-
-			body{
-			  font-family: "proxima-nova-soft", "Proxima Nova Soft", Helvetica, Arial, sans-serif;
-			  background-color: #f9f9f9;
-			}
-
-			#container{
-			  width: 100%;
-			  height: 100%;
-			  max-width: 960px;
-			  margin: auto;
-			  background-color: #ffffff;
-			  position: relative;
-			}
-
-			#container h5{
-			  font-size: 12px;
-			  font-weight: 400;
-			  text-transform: uppercase;
-			  margin-top: 40px;
-			  margin-bottom: 10px;
-			}
-
-			#container h4{
-			  font-size: 12px;
-			  font-weight: 300;
-			}
-
-			#container h3{
-			  font-size: 16px;
-			  font-weight: 400;
-			  margin: 10px 0;
-			}
-
-			#container > #header{
-			  background-color: #313131;
-			  color: #e8e8e8;
-			  text-align: center;
-			  width: 100%;
-			  padding: 45px 0;
-			}
-
-			#container > #middle{
-			  height: 310px;
-			  padding: 40px;
-			}
-
-			#container > #middle > #features{
-			  float: left;
-			  margin-top: -20px;
-			}
-
-			#container > #middle > #features > ul > li{
-			  font-size: 12px;
-			  font-weight: 300;
-			  margin-bottom: 7px;
-			  margin-left: 5px;
-			}
-
-			#container > #middle > #features > .code{
-			  font-size: 10px;
-			  font-weight: 300;
-			  color: #5a5a5a;
-			  border: 1px dashed #ddd;
-			  padding: 7px 30px 7px 10px;
-			}
-
-			#container > #middle > #features > a{
-			  color: #000;
-			  font-size: 10px;
-			}
-
-			#container > #middle > #bcPaint{
-			  width: 600px;
-			  height: 400px;
-			  float: right;
-			}
-
-			@media (max-width: 1024px){
-				body{
-					top: 0;
-					right: 0;
-					bottom: 0;
-					left: 0;
-					position: fixed;
-				}
-
-				#container{
-					background-color: #f7f7f7;
-				}
-
-				#container h4{
-					font-size: 18px;
-				}
-
-				#container h3{
-					font-size: 32px;
-					margin: 15px 0;
-				}
-
-				#container > #middle > #features{
-					display: none;
-				}
-
-				#container > #middle{
-					width: 100%;
-					height: calc(100% - 270px);
-					padding: 0;
-				}
-
-				#bcPaint{
-					width: 100% !important;
-					height: 100% !important;
-					margin: 0 !important;
-					background-color: #ffffff;
-				}
-			}
-		</style>
+      	
+		
   </head>
 <body>
 
@@ -168,6 +46,23 @@
     <label for="exampleInputEmail1">Aircraft company name</label>
     <input class="form-control" name="aircraftName" placeholder="XXX aircraft">
   </div>
+     <div class="form-group">
+    <label for="exampleInputEmail1">Aircraft company name</label>
+    <input class="form-control" name="aircraftName" placeholder="XXX aircraft">
+  </div>
+     <div class="form-group">
+    <label for="exampleInputEmail1">Aircraft company name</label>
+    <input class="form-control" name="aircraftName" placeholder="XXX aircraft">
+  </div>
+     <div class="form-group">
+    <label for="exampleInputEmail1">Aircraft company name</label>
+    <input class="form-control" name="aircraftName" placeholder="XXX aircraft">
+  </div>
+     <div class="form-group">
+    <label for="exampleInputEmail1">Aircraft company name</label>
+    <input class="form-control" name="aircraftName" placeholder="XXX aircraft">
+  </div>
+  
 
     <div class="form-group">
     <label for="exampleInputEmail1"></label>

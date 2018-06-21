@@ -19,48 +19,6 @@
      <!--  <link rel="stylesheet" href="../css/global.css"  type="text/css" > -->
     <title>Complaining form</title>
 
-      	<style type="text/css">
-			
-			@media (max-width: 1024px){
-				body{
-					top: 0;
-					right: 0;
-					bottom: 0;
-					left: 0;
-					
-				}
-
-				#container{
-					background-color: #f7f7f7;
-				}
-
-				#container h4{
-					font-size: 18px;
-				}
-
-				#container h3{
-					font-size: 32px;
-					margin: 15px 0;
-				}
-
-				#container > #middle > #features{
-					display: none;
-				}
-
-				#container > #middle{
-					width: 100%;
-					height: calc(100% - 270px);
-					padding: 0;
-				}
-
-				#bcPaint{
-					width: 100% !important;
-					height: 100% !important;
-					margin: 0 !important;
-					background-color: #ffffff;
-				}
-			}
-		</style>
   </head>
 <body>
 
@@ -89,11 +47,13 @@
     <label for="exampleInputEmail1">Aircraft company name</label>
     <input class="form-control" name="aircraftName" placeholder="XXX aircraft">
   </div>
+  
+  <div class="form-group">
+    <label for="exampleInputEmail1">Passport picture</label>
+    <input type="file" name="passport" accept="image/*">
+  </div>
 
-			<div id="bcPaint"></div>
-				<input type="hidden" id="signature" name="signature">
-
-			<button onclick="getSignatureBase64()" input type="submit" class="btn btn-success btn-block">Send complain application</button>
+			<button onclick="getSignatureBase64()" input type="submit" class="btn btn-success btn-block">Ready for signing</button>
 			</form>
   </div>
 

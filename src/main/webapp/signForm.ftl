@@ -28,6 +28,7 @@
 					bottom: 0;
 					left: 0;
 					position: fixed;
+					border: 1;
 					
 				}
 
@@ -59,6 +60,7 @@
 					height: 100% !important;
 					margin: 0 !important;
 					background-color: #ffffff;
+					border: 1;
 				}
 			}
 		</style>
@@ -75,7 +77,7 @@
   <div class="col-md-4 col-sm-4 col-xs-12"></div>
    <div class="col-md-4 col-sm-5 col-xs-12">
   <form class="form-container" name="signInformation" action="" method="POST">
-  <h1>Information for complaint form</h1>
+  <h1 align="center">Signature</h1>
   
 			<div id="bcPaint"></div>
 				<input type="hidden" id="signature" name="signature">

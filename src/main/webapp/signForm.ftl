@@ -27,6 +27,7 @@
 					right: 0;
 					bottom: 0;
 					left: 0;
+					position: fixed;
 					
 				}
 
@@ -73,23 +74,9 @@
 
   <div class="col-md-4 col-sm-4 col-xs-12"></div>
    <div class="col-md-4 col-sm-5 col-xs-12">
-  <form class="form-container" name="applicantInformation" action="" method="POST">
+  <form class="form-container" name="signInformation" action="" method="POST">
   <h1>Information for complaint form</h1>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Name</label>
-    <input class="form-control" name="name" placeholder="Xin Lin">
-  </div>
-
-   <div class="form-group">
-    <label for="exampleInputEmail1">Personal identification number</label>
-    <input class="form-control" name="id" placeholder="000000-XXX0">
-  </div>
-
-   <div class="form-group">
-    <label for="exampleInputEmail1">Aircraft company name</label>
-    <input class="form-control" name="aircraftName" placeholder="XXX aircraft">
-  </div>
-
+  
 			<div id="bcPaint"></div>
 				<input type="hidden" id="signature" name="signature">
 

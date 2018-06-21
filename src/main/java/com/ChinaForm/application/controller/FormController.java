@@ -52,6 +52,10 @@ public class FormController {
 	
 
 	 String applicantInformation=null;
+	 
+	 String name="";
+	 String id="";
+	 String aircraftName="";
 	
 
 		@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -65,6 +69,24 @@ public class FormController {
 		@RequestMapping(value = "/", method = RequestMethod.POST)
 		public String getHetu(@RequestParam("name") String name,@RequestParam("id") String id,@RequestParam("aircraftName") String aircraftName, String signature) throws DocumentException, IOException {
 
+			this.name=name;
+			this.id=id;
+			this.aircraftName=aircraftName;
+
+			return "redirect:/sign";
+		}
+		
+		@RequestMapping(value = "/sign", method = RequestMethod.GET)
+		public String sentSign(Model model) throws IOException {
+			
+			model.addAttribute("applicantInformation", applicantInformation);
+			return "signForm";
+		}
+
+
+		@RequestMapping(value = "/sign", method = RequestMethod.POST)
+		public String getSigned(String signature) throws DocumentException, IOException {
+			
 			Document document = new Document();
 			PdfWriter.getInstance(document, new FileOutputStream("testi.pdf"));
 			
@@ -95,10 +117,14 @@ public class FormController {
 		      String body = (aircraftName);	      
 		      File f = new File("testi.pdf");
 			      sposti.sendMail(to, subject, body, f);
-			      
-			  
-		  
-			return "redirect:/";
+
+			return "redirect:/thankYouPage";
+		}
+		
+		@RequestMapping(value = "/thankYouPage", method = RequestMethod.GET)
+		public String getThankYouPage(Model model) throws IOException {
+			model.addAttribute("applicantInformation", applicantInformation);
+			return "thankYouPage";
 		}
 	
 

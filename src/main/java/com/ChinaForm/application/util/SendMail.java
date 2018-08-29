@@ -44,23 +44,17 @@ public class SendMail {
 	  MimeMessage message = mailSender.createMimeMessage();
 	  
 	  try{
-			//String data = base64Str;			
-		  //	byte[] decodedImg = Base64.getDecoder().decode(data.getBytes(StandardCharsets.UTF_8));
-		  //  DataSource source = new ByteArrayDataSource(Base64.getDecoder().decode(data),"application/pdf");	
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
 			helper.setFrom("teamlilatunnit@gmail.com");
 			helper.setTo(to);
 			helper.setSubject(subject);
 			helper.setText(body);
-
-		//	File file = new File("/Users/Admin/Desktop/testi.rtf");
 			helper.addAttachment(file.getName(), file);
 
-		     }catch (MessagingException e) {
+	  }catch (MessagingException e) {
+		  
 			throw new MailParseException(e);
-		     }
-		     mailSender.send(message);
-	         }
-
-
+	  }
+	mailSender.send(message);
+   }
 }

@@ -50,23 +50,28 @@ public class FormController {
 	@Autowired
 	private SendMail sposti;
 	
-
+	 // String variables, these will be used later
 	 String applicantInformation=null;
-	 
 	 String name="";
 	 String id="";
 	 String aircraftName="";
 	 String passport="";
 	
-
-		@RequestMapping(value = "/", method = RequestMethod.GET)
-		public String sentUserInformation(Model model) throws IOException {
+	 /**
+	 * This method returns index page where all starts
+	 */
+	 @RequestMapping(value = "/", method = RequestMethod.GET)
+	  public String sentUserInformation(Model model) throws IOException {
 			
-			model.addAttribute("applicantInformation", applicantInformation);
-			return "index";
-		}
+	   model.addAttribute("applicantInformation", applicantInformation);
+	   
+	   return "index";
+	  }
 
-
+		 /**
+		 * Parameters from form will be inserted to parameters
+		 * returns sign html page which contains signature form
+		 */
 		@RequestMapping(value = "/", method = RequestMethod.POST)
 		public String getUserInformation(@RequestParam("name") String name,@RequestParam("id") String id,@RequestParam("aircraftName") String aircraftName,@RequestParam("passportImageBase64") String passport) throws DocumentException, IOException {
 
@@ -80,6 +85,9 @@ public class FormController {
 			return "redirect:/sign";
 		}
 		
+		 /**
+		 * Returns sign page
+		 */
 		@RequestMapping(value = "/sign", method = RequestMethod.GET)
 		public String sentSign(Model model) throws IOException {
 			
@@ -87,21 +95,29 @@ public class FormController {
 			return "signForm";
 		}
 
-
+		 /**
+		 * Creates PDF from input data given by user
+		 * Contains string parameters and also signature which is base64 type
+		 * uses util sposti.sendmail for sending the email message
+		 */
 		@RequestMapping(value = "/sign", method = RequestMethod.POST)
 		public String getSigned(String signature) throws DocumentException, IOException {
 			
+			// new document
 			Document document = new Document();
 			PdfWriter.getInstance(document, new FileOutputStream("testi.pdf"));
 			
+			// document settings
 			document.open();
 			Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
 			Chunk chunk = new Chunk(name+id+aircraftName,font);
 			
+			// string parameters will be inserted as paragraphs to the pdf file
 			Paragraph pEmail = new Paragraph(name);
 			Paragraph pId = new Paragraph(id);
 			Paragraph pAircraftName = new Paragraph(aircraftName);
 			
+			// signature from bytes to image
 			String signatureData = signature;			
 			String base64ImageSignature = signatureData.split(",")[1];
 			byte[] imageBytesSignature = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64ImageSignature);
@@ -113,6 +129,7 @@ public class FormController {
 			Image imageSignature = Image.getInstance(imageBytesSignature);
 			Image imagePassport = Image.getInstance(imageBytesPassport);
 			
+			// add values to document
 			document.add(pEmail);
 			document.add(pId);
 			document.add(pAircraftName);
@@ -120,13 +137,15 @@ public class FormController {
 			document.add(imagePassport);
 			document.close();
 			
-			System.out.println("Nimi lomakkeelta: "+name);	
+			System.out.println("Name from inputfields: "+name);	
 			System.out.println("signature: "+signature.toString());
-			  String to = name;
-		      String subject = (id);
-		      String body = (aircraftName);	      
-		      File f = new File("testi.pdf");
-			      sposti.sendMail(to, subject, body, f);
+			String to = name;
+		    String subject = (id);
+		    String body = (aircraftName);	      
+		    File f = new File("testi.pdf");
+			
+		    // sends the email
+		    sposti.sendMail(to, subject, body, f);
 
 			return "redirect:/thankYouPage";
 		}
